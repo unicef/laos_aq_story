@@ -1,0 +1,550 @@
+body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    overflow-x:hidden;
+    background: rgb(0,0,0);
+}
+a, a:hover, a:visited {
+    color: #efefef;
+}
+#mapScrollNote {
+    display: block;
+    position: fixed;
+    pointer-events: none;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #d3d3d3;
+    text-align: center;
+    font-size: 1em;
+    transition: opacity 0.5s ease-in-out;
+}
+#mapInset {
+    bottom:50px;
+    right:30px;
+    height: 180px;
+    width:250px;
+    max-width:100%;
+    position: fixed;
+    z-index: 1;
+    opacity:0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+#mapInset .mapboxgl-ctrl-bottom-left{
+    display: none;
+}
+#mapToggle {
+    position: fixed;
+    top: 10px;
+    right: 30px;
+    color:#fff;
+    opacity:0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 100;
+}
+
+#mapToggle span {
+    display: block;
+}
+
+#mapToggle #isoBtnHold, #mapToggle #schoolsBtnHold {
+    opacity: 0;
+    display: none;
+}
+
+#map {
+    top:0;
+    left:0;
+    height: 100vh;
+    width:100vw;
+    max-width:100%;
+    position: fixed;
+    z-index: -1;
+    transition: width 2s;
+    /* overflow: none; */
+}
+
+#mapCompare {
+    pointer-events: none;
+    top:0;
+    right:-50vw;
+    height: 100vh;
+    width:50vw;
+    /* overflow: none; */
+    /* max-width:100%; */
+    position: fixed;
+    transition: right 2s;
+    /* z-index: -1; */
+}
+#loader {
+    top:0;
+    height: 100vh;
+    width:100vw;
+    position: fixed;
+    z-index: 0;
+    background: #000;
+    transition: opacity 1s ease-out;
+    pointer-events: none;
+}
+#loaderSpin {
+    border: 5px solid #333;
+    border-top: 5px solid #d3d3d3;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: loadSpin 2s linear infinite;
+    transition: opacity 0.5s ease-out; 
+    position: relative;
+    top: 41%;
+    margin: auto;
+} 
+@keyframes loadSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#freeExplore {
+    /* background: #fff; */
+    /* margin-top:20px; */
+    position: absolute;
+    z-index: -1;
+    top: -45px;
+    right: 0;
+    border-radius: 10px;
+    width: 170px;
+    /* border: 1px solid rgba(0, 0, 0, 0.4); */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+    color: #111;
+    font-size: 13px;
+    /* color: #404040; */
+    display: none;
+    /* margin: 0; */
+    /* padding: 0; */
+    padding: 10px 10px 30px 10px;
+    transition: 0.1s;
+    text-transform: uppercase;
+}
+#freeExplore:hover {
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+#freeExplore.active {
+    background-color: #fff;
+    color: #000;
+}
+#menu, #menuSm, #menuSmTwo {
+    background: #fff;
+    margin-top:20px;
+    position: inherit;
+    z-index: 1;
+    top: 10px;
+    right: 10px;
+    border-radius: 3px;
+    width: 100%;
+    /* border: 1px solid rgba(0, 0, 0, 0.4); */
+    font-family: 'Open Sans', sans-serif;
+}
+#menu a, #menuSm a, #menuSmTwo a {
+    font-size: 13px;
+    color: #ffffff;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    text-align: center;
+    background-color: #111111;
+}
+#menu a:last-child, #menuSm a:last-child, #menuSmTwo a:last-child {
+    border: none;
+}
+#menu a:hover, #menuSm a:hover, #menuSmTwo a:hover {
+    background-color: #333333;
+    color: #efefef;
+}
+#menu a.active, #menuSm a.active, #menuSmTwo a.active {
+    background-color: #efefef;
+    color: #111111;
+}
+#menu a.active:hover, #menuSm a.active:hover, #menuSmTwo a.active:hover {
+    background: #efefef;
+}
+#infographicHold {
+    width: 50%;
+    /* height: 300px; */
+    /* animation: loadSpin 2s linear infinite; */
+    transition: opacity 0.5s ease-in;
+    position: absolute;
+    top: 300px;
+    right: 5%;
+    /* margin: auto; */
+    opacity: 0;
+}
+#infographicHold img {
+    width:100%;
+    position: absolute;
+    transition: opacity 1s ease-in;
+}
+#infographicImgTwo {
+    opacity: 0;
+}
+#story {
+    /* background:rgba(0,0,0,.9); */
+}
+#header {
+    margin: auto;
+    padding:10px 0;
+    width: 100vw;
+    background-color: rgba(0,0,0,.95);
+}
+#header h1, #header h2 {
+    margin: 0;
+    padding: 2vh 2vw;
+    text-align: center;
+    display: none;
+}
+#header span {
+    margin-right:30px;
+    text-align: right;
+    display: block;
+}
+#header span img {
+    margin-left:25px;
+    margin-top:10px;
+    height:28px;
+}
+#footer {
+    width: 100%;
+    min-height: 5vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: left;
+    line-height: 25px;
+    padding-left: 30px;
+    font-size: 13px;
+    position: absolute;
+    z-index:2;
+    box-sizing: border-box;
+    /* display: none; */
+}
+#footer ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    width: 85%;
+}
+#features {
+    padding-top: 10vh;
+    padding-bottom: 0;
+    z-index: 100;
+}
+#features #intro h3 {
+    font-size:50px;
+    line-height:60px;
+    font-weight:100;
+    color:#fff;
+    text-shadow: 2px 2px 8px #000;
+}
+#features #intro p {
+    font-size:20px;
+    line-height: 35px;
+    color: #d3d3d3;
+    margin-top: -30px;
+    text-shadow: 2px 2px 8px #000;
+}
+
+#features #methodNote {
+    font-size: 0.9em;
+    color: #9a9a9a;
+    padding: 20px 0 0 0;
+    line-height: 1.6em;
+}
+
+#features #intro .light, #features #intro .dark {
+    /* width:50vw; */
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
+}
+#features .light, #features .dark {
+    box-shadow: 4px 4px 8px #333;
+}
+
+#features .light .legendHold, #features .dark .legendHold {
+    margin: 15px 0 0 0;
+    /* height:50px; */
+    padding:0;
+    display: block;
+    /* box-sizing: border-box; */
+}
+
+.textLegend .textLegendHeader {
+    font-size: 0.8em;
+    color: #9a9a9a;
+    display: block;
+    margin: 0;
+    padding: 0px 0 20px 0;
+}
+
+#kazakhstan-schools .textLegend, #schools-connectivity .textLegend {
+    padding:0;
+    margin-top:15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#kazakhstan-schools .textLegend span, #schools-connectivity .textLegend span {
+    width:33%;
+    display: inline-block;
+    height: 12px;
+    text-align: center;
+}
+
+.textLegend span label {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.8em;
+    color: #9a9a9a;
+}
+
+#economic .textLegend, #socio-economic .textLegend, #schools-population .textLegend, #high-economic-1 .textLegend, #high-economic-2 .textLegend {
+    display: inline-block;
+    padding: 0 15px 0 0;
+    width: 60%;
+    /* position: relative; */
+    box-sizing: border-box;
+}
+
+#economic .textLegendHeader, #socio-economic .textLegendHeader, #schools-population .textLegendHeader, #high-economic-1 .textLegendHeader, #high-economic-2 .textLegendHeader {
+    padding:0;
+}
+
+#economic .heightLegend, #socio-economic .heightLegend, #schools-population .heightLegend, #high-economic-1 .heightLegend, #high-economic-2 .heightLegend {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+    width: 40%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+#economic .heightLegend img, #schools-population .heightLegend img, #high-economic-1 .heightLegend img, #high-economic-2 .heightLegend img {
+    opacity:0.5;
+}
+
+#economic .textLegend span, #socio-economic .textLegend span, #schools-population .textLegend span, #high-economic-1 .textLegend span, #high-economic-2 .textLegend span {
+    width:20%;
+    display: inline-block;
+    height: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size:12px;
+    color: 'rgba(0,0,0,0.85)';
+}
+/* 
+#schools-connectivity .textLegend, #economic .textLegend, #socio-economic .textLegend, #schools-population .textLegend {
+
+} */
+
+#schools-connectivity .textLegend label.highLabel, #economic .textLegend label.highLabel, #socio-economic .textLegend label.highLabel, #schools-population .textLegend label.highLabel, #high-economic-1 .textLegend label.highLabel, #high-economic-2 .textLegend label.highLabel {
+    /* position: absolute; */
+    /* right: 15px; */
+    /* top:0; */
+    font-size:0.8em;
+    float:right;
+    margin-top: 3px;
+    color:#9a9a9a;
+}
+
+#schools-connectivity .textLegend label.lowLabel, #economic .textLegend label.lowLabel, #socio-economic .textLegend label.lowLabel, #schools-population .textLegend label.lowLabel, #high-economic-1 .textLegend label.lowLabel, #high-economic-2 .textLegend label.lowLabel {
+    /* position: absolute; */
+    /* left: 0; */
+    /* top:0; */
+    font-size:0.8em;
+    color:#9a9a9a;
+}
+
+#schools-connectivity .heightLegend label.popLabel, #economic .heightLegend label.popLabel, #socio-economic .heightLegend label.popLabel, #high-economic-1 .heightLegend label.popLabel, #high-economic-2 .heightLegend label.popLabel {
+    /* position: absolute;
+    /* top:0; */
+    font-size: 0.8em;
+    color:#9a9a9a;
+}
+
+/* #schools-connectivity .textLegend .heightLegend, #economic .textLegend .heightLegend, #socio-economic .textLegend .heightLegend, #schools-population .textLegend .heightLegend {
+    display: inline-block;
+    width:30%;
+    margin-left:10%;
+    padding: 0
+}
+
+#schools-connectivity .textLegend .heightLegend img, #economic .textLegend .heightLegend img, #socio-economic .textLegend .heightLegend img, #schools-population .textLegend .heightLegend img {
+    margin-bottom: -10px;
+} */
+
+.hidden {
+    visibility: hidden;
+}
+.centered {
+    width: 50vw;
+    margin: 0 auto;
+}
+.lefty {
+    width: 33vw;
+    margin-left: 5vw;
+}
+.righty {
+    width: 33vw;
+    margin-left: 62vw;
+}
+.fully {
+    width: 100%;
+    margin: auto;
+}
+.light {
+    color: #444;
+    background-color: #fafafa;
+}
+.dark {
+    color: #fafafa;
+    background-color: #111;
+}
+.step {
+    padding-bottom: 50vh;
+    /* margin-bottom: 10vh; */
+    opacity: 0.25;
+    pointer-events: none;
+}
+.step a {
+    pointer-events: initial;
+}
+.step.active {
+    opacity: 0.9;
+}
+
+.step div {
+    padding:  20px 40px;
+    line-height: 25px;
+    font-size: 15px;
+    border-radius: 10px;
+    
+             /* -5px -5px 10px #ebebeb; */
+}
+
+.step img {
+    width: 100%;
+}
+
+#features #explore .light, #features #explore .dark {
+    /* pointer-events: auto; */
+    position: relative;
+}
+
+#features #explore .light #menu, #features #explore .light #freeExplore, #features #high-economic-1 .light #menuSm, #features #high-economic-2 .light #menuSmTwo, #features #explore .dark #menu, #features #explore .dark #freeExplore, #features #high-economic-1 .dark #menuSm, #features #high-economic-2 .dark #menuSmTwo {
+    pointer-events: auto;
+    /* position: relative; */
+}
+
+/* Fix issue on mobile browser where scroll breaks  */
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+    touch-action: unset;
+}
+
+/* @media (max-width: 1325px) {
+    #economic .textLegend, #socio-economic .textLegend, #schools-population .textLegend, #high-economic .textLegend, #economic .heightLegend, #schools-population .heightLegend, #high-economic .heightLegend {
+        width:50%;
+        display: inline-block;
+    }
+} */
+
+@media (max-width: 1530px) {
+    #economic .textLegend, #socio-economic .textLegend, #schools-population .textLegend, #high-economic-1 .textLegend, #high-economic-2 .textLegend, #economic .heightLegend, #socio-economic .heightLegend, #schools-population .heightLegend, #high-economic-1 .heightLegend, #high-economic-2 .heightLegend {
+        width:100%;
+        display: block;
+    }
+}
+
+@media (max-width: 1050px) {
+    #header span img {
+        height:22px;
+    }
+
+    .centered, .lefty, .righty, .fully {
+        width: 90vw;
+        margin: 0 auto;
+    }
+
+    #mapInset {
+        display: none;
+    }
+
+    #mapToggle {
+        top: 0;
+        right: auto;
+        width: 100%;
+        background: #000;
+        padding: 20px;
+    }
+
+    #mapToggle h3 {
+        display: none;
+    }
+
+    #header span {
+        text-align: center;
+    }
+
+    #freeExplore {
+        display: none;
+        position: fixed;
+        top:137px;
+        right:5vw;
+        /* top:auto; */
+        padding:10px;
+    }
+
+    #features #intro h3 {
+        font-size: 35px;
+        line-height: 42px;
+    }
+
+    #features #intro p {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    /* #economic .textLegend, #socio-economic .textLegend, #schools-population .textLegend, #high-economic .textLegend, #economic .heightLegend, #schools-population .heightLegend, #high-economic .heightLegend {
+        width:50%;
+        display: inline-block;
+    } */
+}
+
+@media (max-width: 650px) {
+
+
+    #features {
+        padding-top:0;
+    }
+
+    #features #intro {
+        background: rgb(0,0,0);
+        margin:0;
+        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0) 100%);
+    }
+    
+    .step div {
+        padding: 20px 20px;
+    }
+
+    #features #intro.lefty {
+        width: 100vw;
+    }
+}

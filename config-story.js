@@ -1,8 +1,8 @@
 var config = {
-  style: 'mapbox://styles/toolsforradicals/cl87zlbr7000014n241fwyue1',
+  style: 'mapbox://styles/toolsforradicals/clwombqxd010301rda0hd8hd5',
   accessToken: 'pk.eyJ1IjoidG9vbHNmb3JyYWRpY2FscyIsImEiOiJjamdweWU5cXIxNGswMnJwbWRhaDFsbzh6In0.gFiZVOrpOhFaGkxQpzKjEQ',
   showMarkers: false,
-  theme: 'dark',
+  theme: 'light',
   title: 'UNICEF PNG',
   subtitle: 'Frontier Data for Facility Location',
   byline: '',
@@ -13,215 +13,310 @@ var config = {
     {
       id: 'intro',
       alignment: 'left',
-      title: 'UNICEF Papua New Guinea  -  Frontier Data for Facility Location',
+      title: 'UNICEF Laos  -  Frontier Data for Air Quality',
       description: '',
       
       location: {
-        center: [145.232,-6.674],
-        zoom: 7.5,
-        pitch: 52.50,
-        bearing: 18.00,
-      },
+        center: [102.495496, 19.85627], // Longitude and Latitude for Laos
+        zoom: 7, // This zoom level should give a good view of the entire country
+        pitch: 45, // This pitch level should provide a nice perspective
+        bearing: 18.00, // Keeping the original bearing value
+    },
       rotateAnimation: true,
       callback: 'disableFreetime',
       onChapterEnter: [{
-          layer: 'satellite',
+          layer: 'all_schools',
           opacity: 1.0,
-          duration: 1
+          duration: 1000
         },
-        {
-          layer: 'school-locations',
-          opacity: 0.0,
-          duration: 1,
-        }
       ],
+      onChapterExit: [
+            ]
+    },
+    {
+      id: "assumptions",
+      alignment: "left",
+      title: "Assumptions",
+      description: '<ul><li>150 sensors are available for deployment.</li><li>$500 per site budget</li></ul>',
+      comment: "none",
+      location: {
+        center: [102.495496, 19.85627], 
+        zoom: 10.7,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
+      },
+      mapAnimation: "flyTo",
+      onChapterEnter: [        
+        {
+        layer: 'all_schools',
+        opacity: 1.0,
+        duration: 1,
+      },
+      {
+        layer: 'electrified_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'ookla_speeds',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'secondary_preferred',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'enrolment_total',
+        opacity: 0.0,
+        duration: 1,
+      }],
       onChapterExit: []
     },
     {
-      id: 'baseline-overview',
-      alignment: 'left',
-      title: 'Background',
-      description: '<li>Internet and mobile connectivity <b>Low</b></li><li>Physical access <b>challenging</b></li><li>Digital Literacy <b>low</b></li><li>WASH data is <b>sparse</b>',
-      comment : 'With low levels of internet and mobile connectivity, and a predominantly rural population, field data collection in PNG is expensive, time consuming and difficult. <br> <br> Basic facility location data for WASH, Education and Health are sparse, incomplete and scattered in multiple <i>"data silos"</i>.<br>',
+      id: "constraints",
+      alignment: "right",
+      title: "Constraints",
+      description: '<ul><li>One sensor in every district.</li><li>Sensors cannot be deployed to schools without electricity.</li><li>Prefer secondary schools for deployment.</li><li>Where there are multiple candidates, prefer larger schools?</li></ul>',
+      comment: "none",
       location: {
-        center: [145.232,-6.674],
+        center: [102.495496, 19.85627], // Approximate center point of Laos
         zoom: 9.5,
-        pitch: 52.50,
-        bearing: 36.00,
-        speed: 0.1,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
       },
-      mapAnimation: 'flyTo',
-      onChapterEnter: [
+      mapAnimation: "flyTo",
+      onChapterEnter: [        
         {
-          layer: 'school-locations',
-          opacity: 1.0,
-          duration: 15000,
-          easing: 'easeInQuad',
-        },
-      ],
-      onChapterExit: [],
+        layer: 'all_schools',
+        opacity: 1.0,
+        duration: 1,
+      },
+      {
+        layer: 'electrified_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'ookla_speeds',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'secondary_preferred',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'enrolment_total',
+        opacity: 0.0,
+        duration: 1,
+      }],
+      onChapterExit: [
+      ]
     },
     {
-      id: 'savanakhet-focus',
-      alignment: 'left',
-      title: 'Challenges for WASH',
-      image: '',
-      description: '<li>We collect data with <b>mWater</b></li><li>mWater doesn\'t know where all the WASH facilities are</li><li>Neither do we</li>',
-      comment: 'Collate data from different initiative/sections e.g. mWater, mSupply, Education sector initiatives Augment current data w frontier data fast, cheap, scalable, proven',
+      id: "Example",
+      alignment: "left",
+      title: "Example",
+      description: "Selecting electrified schools",
+      comment: "none",
       location: {
-        center: { lon: 147.20482, lat: -9.45778 },
-      zoom: 11.35,
-      pitch: 60.00,
-      bearing: 9.60,
-      speed: 0.5,
-      },
-      onChapterEnter: [
-      ],
-      onChapterExit: []
-    },
-
-    {
-      id: 'savnakhet-focus-3',
-      alignment: 'left',
-      title: 'Frontier Data Technologies can help',
-      image: '',
-      description: "We can:<br><li>Validate and clean existing WASH facility location data</li><li>Identify unmapped WASH facilities with Open Data</li><li>Complete the picture with High Res Satellite + Machine Learning</li><li>Make reliable per-school population + catchment estimates using frontier data</li>",
-      location: {
-        center: { lon: 147.20482, lat: -9.45778 },
-      zoom: 5.35,
-      pitch: 60.00,
-      bearing: 9.60,
-      speed: 0.1,
-      },
-      mapAnimation: 'flyTo',
-      onChapterEnter: [
-        {
-          layer: 'satellite',
-          opacity: 0.0,
-          duration: 10000,
-          easing: 'easeInOut',
-        },
-      ],
-      onChapterExit: []
-    },
-
-
-
-    {
-      id: 'savnakhet-focus-5',
-      alignment: 'left',
-      title: 'Our Approach',
-      image: '',
-      description: '<li>Compile existing open & closed datasets</li><li>Work with Government, expert validators and volunteers to clean and combine</li><li>Complete the picture with High Res Satellite + ML</li>',
-      location: {
-        center: [145.6504982,-6.5597483],
-        zoom: 16,
-        pitch: 0,
-        bearing: 0,
-        speed: 1.0
-      },
-      mapAnimation: 'flyTo',
-      //callback: 'enableFreetime',
-      onChapterEnter: [{
-          layer: 'redbox',
-          opacity: 0.7,
-          duration: 11000,
-          easing: 'easeInQuint',
-        },
-        {
-          layer: 'greenbox',
-          opacity: 0.7,
-          duration: 14000,
-          easing: 'easeInQuint',
-        },
-        {
-          layer: 'satellite',
-          opacity: 1.0,
-          duration: 1000,
-          easing: 'easeInOut',
-        },
-        
-      ],
-      onChapterExit: []
-    },
-
-    {
-      id: 'approach-2',
-      alignment: 'left',
-      title: '',
-      image: '',
-      description: '<li>Estimate per-facility catchment and vulnerable population (children, youth, women of childbearing age)</li><li>Create a new, open, comprehensive dataset of WASH facilities, their location, population they serve</li><li>Get this data on to mWater</li>',
-      location: {
-        center: [145.232,-6.674],
+        center: [102.495496, 19.85627], // Approximate center point of Laos
         zoom: 9.5,
-        pitch: 52.50,
-        bearing: 18.00,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
       },
-      rotateAnimation: true,
-      // callback: 'enableFreetime',
+      mapAnimation: "flyTo",
+      onChapterEnter: [        
+        {
+        layer: 'all_schools',
+        opacity: 0.0,
+        duration: 5000,
+      },
+      {
+        layer: 'electrified_schools',
+        opacity: 1.0,
+        duration: 1000,
+      },
+      {
+        layer: 'ookla_speeds',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'secondary_preferred',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'enrolment_total',
+        opacity: 0.0,
+        duration: 1,
+      }],
+      onChapterExit: [
+      ],
+    },
+    {
+      id: "prioritising",
+      alignment: "left",
+      title: "Prioritising schools with low or no internet connectivity",
+      description: "Prioritising schools with low or no internet connectivity",
+      comment: "none",
+      location: {
+        center: [102.495496, 19.85627], // Approximate center point of Laos
+        zoom: 9.5,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
+      },
+      mapAnimation: "flyTo",
+      onChapterEnter: [        
+        {
+        layer: 'all_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'electrified_schools',
+        opacity: 0.0,
+        duration: 1000,
+      },
+      {
+        layer: 'ookla_speeds',
+        opacity: 1.0,
+        duration: 3000,
+      },
+      {
+        layer: 'secondary_preferred',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'enrolment_total',
+        opacity: 0.0,
+        duration: 1,
+      }],
+      onChapterExit: [
+      ]
+    },
+    {
+      id: "secondary",
+      alignment: "left",
+      title: "Preferring secondary schools",
+      description: "Preferring secondary schools",
+      comment: "none",
+      location: {
+        center: [102.495496, 19.85627], // Approximate center point of Laos
+        zoom: 9.5,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
+      },
+      mapAnimation: "flyTo",
+      onChapterEnter: [        
+        {
+        layer: 'all_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'electrified_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'ookla_speeds',
+        opacity: 0.0,
+        duration: 1000,
+      },
+      {
+        layer: 'secondary_preferred',
+        opacity: 1.0,
+        duration: 1,
+      },
+      {
+        layer: 'enrolment_total',
+        opacity: 0.0,
+        duration: 1,
+      }],
+      onChapterExit: [
+      ]
+    },
+    {
+      id: "enrolment",
+      alignment: "left",
+      title: "Selecting for larger enrolments",
+      description: "Selecting for larger enrolments",
+      comment: "none",
+      location: {
+        center: [102.495496, 19.85627], // Approximate center point of Laos
+        zoom: 9.5,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
+      },
+      mapAnimation: "flyTo",
+      onChapterEnter: [        
+        {
+        layer: 'all_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'electrified_schools',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'ookla_speeds',
+        opacity: 0.0,
+        duration: 1,
+      },
+      {
+        layer: 'secondary_preferred',
+        opacity: 0.0,
+        duration: 1000,
+      },
+      {
+        layer: 'enrolment_total',
+        opacity: 0.4,
+        duration: 2000,
+      }],
+    },
+    {
+      id: "selected",
+      alignment: "left",
+      title: "School selected",
+      description: '<table style="width:100%"><tr><th>School name</th><td>ມັດທະຍົມສົມບູນເມືອງໂພນໄຊ (ມັດທະຍົມ)</td></tr><tr><th>Total enrolment</th><td>989</td></tr><tr><th>Has electricity?</th><td>✔️</td></tr><tr><th>Number of connections detected</th><td>Low</td></tr><tr><th>Average internet speed (surrounding area)</th><td>1800kbps⬇️ <br>900kbps⬆️</td></tr></table>',
+      comment: "none",
+      location: {
+        center: [102.495496, 19.85627], // Approximate center point of Laos
+        zoom: 9.5,
+        pitch: 52.5,
+        bearing: 36,
+        speed: 0.1
+      },
+      mapAnimation: "flyTo",
       onChapterEnter: [
         {
-          layer: 'png-voronoi',
-          opacity: 0.7,
+          layer: 'enrolment_total',
+          opacity: 0.0,
           duration: 5000,
-          easing: 'easeInQuant',
-        },
-      ],
-      onChapterExit: []
-    },
-    {
-      id: 'savnakhet-focus-4',
-      alignment: 'left',
-      title: 'Where we\'ll be',
-      image: '',
-      description: 'Comprehensive view of: <ul><li>Where WASH facilities are</li><li>Who they serve</li><li>Who is missing out</li><li>Where support is needed most</li></ul><br>A solid foundation for data-driven decision making and microplanning.<br>Self-sustaining and automated data updates.',
-      location: {
-        center: { lon: 147.20482, lat: -9.45778 },
-      zoom: 7.35,
-      pitch: 60.00,
-      bearing: 9.60,
-      speed: 0.3,
-      },
-      mapAnimation: 'flyTo',
-      callback: 'enableFreetime',
-      onChapterEnter: [
-        {
-          layer: 'satellite',
-          opacity: 0.0,
-          duration: 10000,
-          easing: 'easeInOut',
-        }
-      ],
-      onChapterExit: []
-    },
-    {
-      id: 'outro',
-      alignment: 'left',
-      title: 'Let\'s talk',
-      description: '',
-      
-      location: {
-        center: { lon: 147.20482, lat: -9.45778 },
-      zoom: 5.35,
-      pitch: 60.00,
-      bearing: 9.60,
-      speed: 1,
-      },
-      rotateAnimation: true,
-      callback: 'disableFreetime',
-      onChapterEnter: [{
-          layer: 'satellite',
-          opacity: 1.0,
-          duration: 1
         },
         {
-          layer: 'png-voronoi',
-          opacity: 0.0,
-          duration: 1,
-        }
+          layer: 'selected_school',
+          opacity: 0.54,
+          duration: 2000,
+        },
       ],
-      onChapterExit: []
-    },
-
+      onChapterExit: [
+  
+      ]
+    }
   ]
-};
+}

@@ -3,7 +3,7 @@ var config = {
   accessToken: 'pk.eyJ1IjoidG9vbHNmb3JyYWRpY2FscyIsImEiOiJjamdweWU5cXIxNGswMnJwbWRhaDFsbzh6In0.gFiZVOrpOhFaGkxQpzKjEQ',
   showMarkers: false,
   theme: 'light',
-  title: 'UNICEF PNG',
+  title: 'UNICEF Laos',
   subtitle: 'Frontier Data for Facility Location',
   byline: '',
   footer: '',
@@ -13,7 +13,7 @@ var config = {
     {
       id: 'intro',
       alignment: 'left',
-      title: 'UNICEF Laos  -  Frontier Data for Air Quality',
+      title: 'Arm - AI for Social Good -  Frontier Data for Air Quality in Laos',
       description: '',
       
       location: {
